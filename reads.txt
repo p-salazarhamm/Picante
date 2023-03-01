@@ -1,0 +1,9 @@
+SEV11_S8_L001_R1_001.fastq.gz	SEV11_S8_L001_R2_001.fastq.gz		
+TR115-Kidney_S1_L001_R1_001.fastq.gz	TR115-Kidney_S1_L001_R2_001.fastq.gz		
+TR115-Lung_S2_L001_R1_001.fastq.gz	TR115-Lung_S2_L001_R2_001.fastq.gz		
+TR71-Heart_S6_L001_R1_001.fastq.gz	TR71-Heart_S6_L001_R2_001.fastq.gz		
+TR71-Lung_S5_L001_R1_001.fastq.gz	TR71-Lung_S5_L001_R2_001.fastq.gz		
+TR79-Heart_S3_L001_R1_001.fastq.gz	TR79-Heart_S3_L001_R2_001.fastq.gz		
+TR79-Liver_S4_L001_R1_001.fastq.gz	TR79-Liver_S4_L001_R2_001.fastq.gz		
+XP13-Lung_S7_L001_R1_001.fastq.gz	XP13-Lung_S7_L001_R2_001.fastq.gz		
+XP5-Lung_S9_L001_R1_001.fastq.gz	XP5-Lung_S9_L001_R2_001.fastq.gz		
