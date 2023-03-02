@@ -19,6 +19,8 @@ array=(TR115-Lung.sam \
 for f in ${array[@]}; do
 	base=$(echo $f | sed 's/.sam//')	
 	bam=$(echo $f | sed 's/sam/bam/')	
-samtools view -F 4 -h ${f} |
+samtools view -f 2 -h ${f} |
 	samtools view -S -b > ${bam} 
 done
+
+#keep reads mapped: samtools view -F 4 -h ${f} 
