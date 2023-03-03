@@ -22,5 +22,3 @@ for f in ${array[@]}; do
 samtools view -f 2 -h ${f} |
 	samtools view -S -b > ${bam} 
 done
-
-#keep reads mapped: samtools view -F 4 -h ${f} 
