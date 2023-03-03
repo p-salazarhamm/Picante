@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --partition=conda\o
+#SBATCH --partition=condo
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBARCH --cpus-per-task=16
