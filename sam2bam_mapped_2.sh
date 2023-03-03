@@ -16,6 +16,8 @@ array=(TR115-Lung.sam \
 	TR71-Heart.sam \
 	XP13-Lung.sam )
 
+#Read mapped in proper pairs
+
 for f in ${array[@]}; do
 	base=$(echo $f | sed 's/.sam//')	
 	bam=$(echo $f | sed 's/sam/bam/')	
