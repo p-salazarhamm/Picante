@@ -19,7 +19,7 @@ ref2=/Picante/reference_genome/GCF_003704035.1_HU_Pman_2.1.3_rna.fna.gz
 #2. Index reference 
 # /users/psh102/repo/bwa/bwa index ${ref2}
 
-# Map fastqs to reference
+#3. Map fastqs to reference
 while read R1 R2; do
 	base=$(echo ${R1} | cut -f 1 -d _ )
 	/users/psh102/repo/bwa/bwa mem ${ref2} ${fastqdir}/${R1} ${fastqdir}/${R2} -t 4 > ${base}.sam
