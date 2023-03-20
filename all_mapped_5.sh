@@ -20,5 +20,6 @@ array=(TR115-Lung.sam \
 
 for f in ${array[@]}; do
 	base=$(echo $f | sed 's/.sam//')
-samtools view -F 4 -h ${f} > ${base}_mapped.bam
+samtools view -F 4 -h ${f} |
+samtools view -S -b > ${base}_mapped.bam
 done
