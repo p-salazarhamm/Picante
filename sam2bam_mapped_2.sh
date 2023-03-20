@@ -20,7 +20,7 @@ array=(TR115-Lung.sam \
 
 for f in ${array[@]}; do
 	base=$(echo $f | sed 's/.sam//')	
-	bam=$(echo $f | sed 's/sam/bam/')	
+	bam=$(echo $f | sed 's/.sam/_paired_mapped.bam/')	
 samtools view -f 2 -h ${f} |
 	samtools view -S -b > ${bam} 
 done
