@@ -6,7 +6,7 @@
 makeblastdb -in ${ref} -dbtype nucl -out ${ref}.db
 ```
 
-2. Blast metagenomic assemblies versus reference
+2. Blast metagenomic assemblies against reference
 
 ```
 blastn -query Assembly/MEGAHIT/${strain}.contigs.fa -max_target_seqs 1 -evalue 1e-10 -outfmt 6 -db ${ref}.db > blastn_${strain}
