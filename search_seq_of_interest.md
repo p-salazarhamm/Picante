@@ -18,12 +18,11 @@ blastn -query Assembly/MEGAHIT/${strain}.contigs.fa -max_target_seqs 1 -evalue 1
 cat blastn_${strain} | cut -f 1,7,8 > coord.${strain}
 ```
 
-4. Parse the fasta for the blastn contig ranges
+4. Parse the fasta for the blastn contig ranges using [SCGid] (https://github.com/amsesk/SCGid)
 
 ```
 module load miniconda3
 
-#https://github.com/amsesk/SCGid
 source SCGid/scgidenv/bin/activate 
 
 python3 get_these_contig_ranges.py --fasta Assembly/MEGAHIT/${strain}.contigs.fa --coordinates coord.${strain} > ${strain}_${ref}.contigs
