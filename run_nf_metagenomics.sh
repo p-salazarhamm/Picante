@@ -8,6 +8,7 @@
 #SBATCH --partition=bigmem-1TB
 
 #https://github.com/nf-core/mag
+#Use nextflow.config for Xena
 
 module load singularity 
 
