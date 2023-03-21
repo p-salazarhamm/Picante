@@ -13,7 +13,7 @@
 module load singularity 
 
 nextflow run nf-core/mag -profile singularity \
-  -c nextflow_xena.config \
+  -c nextflow.config \
   --input 'fastqs/*_R{1,2}_001.fastq.gz'
   --kraken2_db "/carc/scratch/projects/ddomman2016191/kraken2_databases/k2_pluspf_20220908.tar.gz" \
   --busco_auto_lineage_prok \
