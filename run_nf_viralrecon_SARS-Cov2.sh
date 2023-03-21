@@ -10,7 +10,7 @@ module load singularity
 
 nextflow run nf-core/viralrecon \
 	--input reads.csv \
-	-c nextflow.config \
+	-c nextflow_hopper.config \
 	--outdir SARS-Cov2 \
 	--platform illumina \
 	--protocol metagenomic \
