@@ -10,7 +10,7 @@
 IFS=$'\t'
 
 fastqdir=Picante/fastqs
-ref1=Picante/reference_genome/Sin_Nombre_NMR11_merged.fasta
+ref1=Picante/reference_genome/SinNombre_NMR11_GCA_002830985.1_genomic.fasta
 ref2=/Picante/reference_genome/GCF_003704035.1_HU_Pman_2.1.3_rna.fna.gz
 
 #1. Merge Sin Nombre Reference NMR11 (L37902-L37904)
