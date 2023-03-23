@@ -7,6 +7,7 @@
 #SBATCH --job-name=viralrecon_hanta
 
 module load singularity
+#use nextflow_hopper.config
 
 nextflow run nf-core/viralrecon \
 	--input reads.csv \
