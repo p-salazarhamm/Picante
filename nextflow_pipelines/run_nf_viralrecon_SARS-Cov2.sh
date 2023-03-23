@@ -16,5 +16,8 @@ nextflow run nf-core/viralrecon \
 	--platform illumina \
 	--protocol metagenomic \
 	--genome 'MN908947.3' \
-	-profile singularity
+	-profile singularity \
 	-resume
+# --kraken2_db '/carc/scratch/projects/ddomman2016191/kraken2_databases/k2_pluspf_20220908'
+# --skip_pangolin 
+# --skip_nextclade
