@@ -19,5 +19,6 @@ nextflow run nf-core/viralrecon \
 	--gff reference_genome/SinNombre_NMR11_GCA_002830985.1.gff \
 	--skip_pangolin \
 	--skip_nextclade \
+	--skip_kraken2 \
 	-profile singularity \
 	-resume
