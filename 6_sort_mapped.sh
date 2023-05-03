@@ -3,7 +3,7 @@
 #SBATCH --partition=condo
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBARCH --cpus-per-task=16
+#SBARCH --cpus-per-task=4
 #SBATCH --time=8:00:00
 #SBATCH --job-name=depth
 
