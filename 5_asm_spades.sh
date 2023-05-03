@@ -10,6 +10,7 @@
 
 module load gcc/11.2.0-otgt
 module load spades/3.15.3-h6sh
+#--meta for metagenomic mode vs. --isolate for pure culture
 
 array=(TR115-Lung \
 	TR79-Heart \
@@ -19,5 +20,5 @@ array=(TR115-Lung \
 	XP13-Lung)
 
 for f in ${array[@]}; do
-spades.py -1 ${f}_mapped_R1.fq -2 ${f}_mapped_R2.fq --trusted-contigs reference_genome/Sin_Nombre_NMR11_merged.fasta --isolate -o {f}_spades -t 12 -m 240
+spades.py -1 ${f}_mapped_R1.fq -2 ${f}_mapped_R2.fq --trusted-contigs reference_genome/Sin_Nombre_NMR11_merged.fasta --meta -o {f}_spades -t 12 -m 240
 done
