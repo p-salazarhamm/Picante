@@ -9,12 +9,12 @@
 
 module load samtools
 
-array=(TR115-Lung_mapped.sam \
-	TR79-Heart_mapped.sam \
-	TR79-Liver_mapped.sam \
-	TR71-Lung_mapped.sam \
-	TR71-Heart_mapped.sam \
-	XP13-Lung_mapped.sam)
+array=(TR115-Lung_mapped_sortposition.sam \
+	TR79-Heart_mapped_sortposition.sam \
+	TR79-Liver_mapped_sortposition.sam \
+	TR71-Lung_mapped_sortposition.sam \
+	TR71-Heart_mapped_sortposition.sam \
+	XP13-Lung_mapped_sortposition.sam)
 
 #All reads mapped
 
