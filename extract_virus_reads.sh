@@ -12,17 +12,17 @@ kraken=/carc/scratch/projects/ddomman2016191/PICANTE/Panama_Hanta/results/Taxono
 fastq=/carc/scratch/projects/ddomman2016191/PICANTE/fastqs/Panama_387048668
 virome=/carc/scratch/projects/ddomman2016191/PICANTE/
 sample=(130125spln_S8 \
-  130130_spln_S2 \
-  131106hk_S7 \
-  131232_hk_S6 \
-  131232_hk_S6 \
-  131240_hk_S10 \
-  131240_hk_S10 \
-  131269hk_S3 \
-  131394_lung_S9 \
-  131453lung_S5 \
-  327538_liv_S1 \
-  327556liv_S4 \)
+      130130_spln_S2 \
+      131106hk_S7 \
+      131232_hk_S6 \
+      131232_hk_S6 \
+      131240_hk_S10 \
+      131240_hk_S10 \
+      131269hk_S3 \
+      131394_lung_S9 \
+      131453lung_S5 \
+      327538_liv_S1 \
+      327556liv_S4)
 
 #git clone https://github.com/jenniferlu717/KrakenTools/tree/master#extract_kraken_readspy
 for s in ${sample[@]}; do;
