@@ -25,6 +25,7 @@ sample=(130125spln_S8 \
       327556liv_S4)
 
 #git clone https://github.com/jenniferlu717/KrakenTools/tree/master#extract_kraken_readspy
+#fasta default but for fastq add --fastq-output
 for s in ${sample[@]}; do;
-python3 ~/repo/KrakenTools/extract_kraken_reads.py -k ${virome}/${s}/kraken2.kraken -s1 ${fastq}/${s}_L001_R1_001.fastq.gz -s2 ${fastq}/${s}_L001_R2_001.fastq.gz -o ${s}_virus_R1.fa -o2 ${s}_virus_R2.fa -t 10239 --include-children -r ${kraken}/${s}/kraken2_report.txt
+python3 ~/repo/KrakenTools/extract_kraken_reads.py -k ${virome}/${s}/kraken2.kraken -s1 ${fastq}/${s}_L001_R1_001.fastq.gz -s2 ${fastq}/${s}_L001_R2_001.fastq.gz -o ${s}_virus_R1.fq -o2 ${s}_virus_R2.fq -t 10239 --include-children -r ${kraken}/${s}/kraken2_report.txt --fastq-output
 done
