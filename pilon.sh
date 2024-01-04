@@ -9,9 +9,10 @@
 module load pilon
 #pilon v.1.22
 
-#must index BAM file
+#Must have index sorted BAM file for pilon
 #module samtools load
-#samtools index *mapped2denovo.bam
+#samtools sort ${s}_mapped2denovo.bam -o ${s}_mapped2denovo.sort.bam
+#samtools index ${s}_mapped2denovo.sort.bam
 
 sample=(264422 \
   	264424 \
