@@ -22,5 +22,5 @@ sample=(264422 \
 	264444)
 
 for s in ${sample[@]}; do
-pilon --genome ${s}_CHOV.fasta --frags ${s}_mapped2denovo.sorted.bam --outdir pilon.${s} --vcf --changes
+pilon --genome ${s}_CHOV.fasta --frags ${s}_mapped2denovo.sort.bam --outdir pilon.${s} --vcf --changes
 done
