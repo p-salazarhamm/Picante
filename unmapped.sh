@@ -5,7 +5,7 @@
 #SBATCH --ntasks-per-node=1
 #SBARCH --cpus-per-task=16
 #SBATCH --time=48:00:00
-#SBATCH --job-name=sam2bam_mapped
+#SBATCH --job-name=unmapped_pe
 
 module load samtools
 
@@ -16,11 +16,11 @@ array=(TR115-Lung.sam \
 	TR71-Heart.sam \
 	XP13-Lung.sam )
 
-#Read mapped in proper pairs
+#Read unmapped and paired
 
 for f in ${array[@]}; do
 	base=$(echo $f | sed 's/.sam//')	
-	bam=$(echo $f | sed 's/.sam/_paired_mapped.bam/')	
-samtools view -f 2 -h ${f} |
+	bam=$(echo $f | sed 's/.sam/_unmapped_pe.bam/')	
+samtools view -f 4 -f 8 -h ${f} |
 	samtools view -S -b > ${bam} 
 done
