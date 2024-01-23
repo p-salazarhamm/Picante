@@ -5,7 +5,7 @@
 #SBATCH --ntasks-per-node=1
 #SBARCH --cpus-per-task=4
 #SBATCH --time=8:00:00
-#SBATCH --job-name=depth
+#SBATCH --job-name=sort
 
 module load samtools
 
