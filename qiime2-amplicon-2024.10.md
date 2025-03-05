@@ -28,6 +28,10 @@ qiime tools import \
 
 ## Trim primers and adapters
 ##### ITS2 rRNA region was amplified with the ITS3F and ITS4R primers
+
+IFS=$'\t'
+
+while read R1 R2 ASM LTP ID phylum class order family; do
   qiime cutadapt trim-paired \
   --i-demultiplexed-sequences demux.qza \
   --p-adapter-f ${adapt-F} \
@@ -35,3 +39,5 @@ qiime tools import \
   --p-adapter-r ${adapt-R} \
   --p-front-r TCCTCCGCTTATTGATATGC \
   --o-trimmed-sequences demux-trimmed.qza
+
+  < primer-metadata.tsv
