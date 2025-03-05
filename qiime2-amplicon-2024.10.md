@@ -31,7 +31,7 @@ qiime tools import \
 
 IFS=$'\t'
 
-while read R1 R2 ASM LTP ID phylum class order family; do
+while read SampleID BarcodeSequence LinkerPrimerSequence BarcodeName ReversePrimer ProjectName Description; do
   qiime cutadapt trim-paired \
   --i-demultiplexed-sequences demux.qza \
   --p-adapter-f ${adapt-F} \
@@ -39,5 +39,5 @@ while read R1 R2 ASM LTP ID phylum class order family; do
   --p-adapter-r ${adapt-R} \
   --p-front-r TCCTCCGCTTATTGATATGC \
   --o-trimmed-sequences demux-trimmed.qza
-
-  < primer-metadata.tsv
+  fi
+done < primer-metadata.tsv
