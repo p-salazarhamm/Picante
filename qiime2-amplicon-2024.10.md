@@ -8,6 +8,7 @@ conda env create -n qiime2-amplicon-2024.10 \
 conda activate qiime2-amplicon-2024.10
 
 ## Import demultiplexed paired-end data
+##### Demultiplexing and adaptor trimming was performed on the MiSeq by MRDNA
 ##### manifest is a tab separated three-column file (.tsv) with headers: sample-id, forward-absolute-filepath, and reverse-absolute-filepath
 ##### demux_seqs is a directory of demultiplexed sequences
 ##### both commands produce the same output
@@ -15,29 +16,29 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path  demux_seqs \
   --input-format CasavaOneEightSingleLanePerSampleDirFmt \
-  --output-path demux-paired-end.qza
+  --output-path demux-pe.qza
 
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path manifest \
   --input-format PairedEndFastqManifestPhred33V2 \
-  --output-path demux-paired-end.qza 
+  --output-path demux-pe.qza 
   
-### Visualize demultiplexed paired-end data
-  qiime demux summarize --i-data demux-paired-end.qza --o-visualization demux.qzv
+### Visualize demultiplexed paired-end data (https://view.qiime2.org/)
+  qiime demux summarize \
+  --i-data demux-pe.qza \
+  --o-visualization demux.qzv
 
-## Trim primers and adapters
+## Trim primers
 ##### ITS2 rRNA region was amplified with the ITS3F and ITS4R primers
-
-IFS=$'\t'
-
-while read SampleID BarcodeSequence LinkerPrimerSequence BarcodeName ReversePrimer ProjectName Description; do
   qiime cutadapt trim-paired \
-  --i-demultiplexed-sequences demux.qza \
-  --p-adapter-f ${adapt-F} \
+  --i-demultiplexed-sequences demux-paired-end.qza \
   --p-front-f GCATCGATGAAGAACGCAGC \
-  --p-adapter-r ${adapt-R} \
   --p-front-r TCCTCCGCTTATTGATATGC \
-  --o-trimmed-sequences demux-trimmed.qza
-  fi
-done < primer-metadata.tsv
+  --o-trimmed-sequences demux-pe-trimmed.qza
+
+### Visualize demultiplexed trimmed paired-end data (https://view.qiime2.org/)
+  qiime demux summarize \
+  --i-data demux-pe-trimmed.qza \
+  --o-visualization demux-trimmed.qzv
+
