@@ -11,18 +11,11 @@ conda activate qiime2-amplicon-2024.10
 ##### Demultiplexing and adaptor trimming was performed on the MiSeq by MRDNA
 ##### manifest is a tab separated three-column file (.tsv) with headers: sample-id, forward-absolute-filepath, and reverse-absolute-filepath
 ##### demux_seqs is a directory of demultiplexed sequences
-##### both commands produce the same output
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path  demux_seqs \
   --input-format CasavaOneEightSingleLanePerSampleDirFmt \
   --output-path demux-pe.qza
-
-qiime tools import \
-  --type 'SampleData[PairedEndSequencesWithQuality]' \
-  --input-path manifest \
-  --input-format PairedEndFastqManifestPhred33V2 \
-  --output-path demux-pe.qza 
   
 ### Visualize demultiplexed paired-end data (https://view.qiime2.org/)
   qiime demux summarize \
