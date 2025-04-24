@@ -66,7 +66,7 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   --o-visualization table.qzv \
   --m-sample-metadata-file sample-metadata.tsv
 
-  ### Filtering feature table
+  ## Filtering feature table
   #### Total-frequency-based filtering (total abundance < 10)
   
   qiime feature-table filter-features \
