@@ -1,4 +1,5 @@
 # QIIME2-amplicon-2024.10
+#### For more information (https://docs.qiime2.org/2024.10/tutorials/overview/)
 
 ## Install
 conda env create -n qiime2-amplicon-2024.10 \
