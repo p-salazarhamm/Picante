@@ -66,7 +66,27 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   --o-visualization table.qzv \
   --m-sample-metadata-file sample-metadata.tsv
 
-  ### Output as ASV table
+  ### Filtering feature table
+  #### Total-frequency-based filtering (total abundance < 10)
+  
+  qiime feature-table filter-features \
+  --i-table table.qza \
+  --p-min-frequency 10 \
+  --o-filtered-table abu10-filtered-table.qza
+
+  #### Contingency-based filtering (total samples < 2)
+  qiime feature-table filter-features \
+  --i-table abu10-filtered-table.qza \
+  --p-min-samples 2 \
+  --o-filtered-table minsam2-abu10-filtered-table.qza
+
+  #### Visualize
+   qiime feature-table summarize \
+  --i-table minsam2-abu10-filtered-table.qza \
+  --o-visualization minsam2-abu10-filtered-table.qzv \
+  --m-sample-metadata-file sample-metadata.tsv
+
+  ### Output as ASV table (filtered table)
  qiime tools export 
   --input-path table.qza 
   --output-path exported-feature-table
