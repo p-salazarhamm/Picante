@@ -36,13 +36,22 @@ qiime tools import \
   --o-visualization demux-trimmed.qzv
 
 ## Denoise with DADA2
+module load miniconda3
+
+source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
+  
   qiime dada2 denoise-paired \
 	--i-demultiplexed-seqs demux-pe-trimmed.qza \
 	--p-trim-left-f 0 \
 	--p-trim-left-r 0 \
 	--p-trunc-len-f 210 \
 	--p-trunc-len-r 210 \
-  --p-n-threads 8 \
+ 	--p-n-threads 8 \
 	--o-table table.qza \
 	--o-representative-sequences rep-seqs.qza \
 	--o-denoising-stats denoising-stats.qza
+
+ ### Tabulate denoise stats and confirm valid data remained
+ qiime metadata tabulate \
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats-dada2.qzv
