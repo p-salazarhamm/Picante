@@ -52,7 +52,7 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
 	--o-representative-sequences rep-seqs.qza \
 	--o-denoising-stats denoising-stats.qza
 
- ### Tabulate denoise stats and confirm valid data remained through visualizations
+ ### Tabulate denoise stats and confirm valid data remained through visualizations (https://view.qiime2.org/)
  qiime metadata tabulate \
   --m-input-file denoising-stats.qza \
   --o-visualization denoising-stats.qzv
