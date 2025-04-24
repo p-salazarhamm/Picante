@@ -51,7 +51,24 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
 	--o-representative-sequences rep-seqs.qza \
 	--o-denoising-stats denoising-stats.qza
 
- ### Tabulate denoise stats and confirm valid data remained
+ ### Tabulate denoise stats and confirm valid data remained through visualizations
  qiime metadata tabulate \
   --m-input-file denoising-stats.qza \
-  --o-visualization denoising-stats-dada2.qzv
+  --o-visualization denoising-stats.qzv
+
+ qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
+ qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file sample-metadata.tsv
+
+  ### Output as ASV table
+ qiime tools export 
+  --input-path table.qza 
+  --output-path exported-feature-table
+  
+ biom convert -i exported-feature-table/feature-table.biom 
+  -o exported-feature-table/feature-table.txt --to-tsv
