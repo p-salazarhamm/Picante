@@ -93,3 +93,14 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   
  biom convert -i exported-feature-table/feature-table.biom 
   -o exported-feature-table/feature-table.txt --to-tsv
+
+  ## Filtering sequences
+  #### Download sequences.fasta from rep-seqs.qzv
+  #### Use seqmagick to filter sequences (https://seqmagick.readthedocs.io/en/latest/)
+  
+  cat filtered-feature-table/feature-table.tsv | cut -f 1 > list_filt_rep_seq
+  
+  conda activate seqmagick
+
+  seqmagick convert sequences.fasta filt-sequences.fasta --include-from-file list_filt_rep_seq 
+  
