@@ -35,3 +35,14 @@ qiime tools import \
   --i-data demux-pe-trimmed.qza \
   --o-visualization demux-trimmed.qzv
 
+## Denoise with DADA2
+  qiime dada2 denoise-paired \
+	--i-demultiplexed-seqs demux-pe-trimmed.qza \
+	--p-trim-left-f 0 \
+	--p-trim-left-r 0 \
+	--p-trunc-len-f 210 \
+	--p-trunc-len-r 210 \
+  --p-n-threads 8 \
+	--o-table table.qza \
+	--o-representative-sequences rep-seqs.qza \
+	--o-denoising-stats denoising-stats.qza
