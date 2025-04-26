@@ -67,32 +67,43 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   --m-sample-metadata-file sample-metadata.tsv
 
   ## Filtering feature table
+  
+  #### Remove redundant ASV with 100% percent identity
+  ##### Some rep-seqs with 100% similarity have different length and will all exist in asv-table and rep-seq
+  
+  qiime vsearch cluster-features-de-novo \
+  --i-table table.qza \
+  --i-sequences rep-seqs.qza \
+  --p-perc-identity 1 \
+  --o-clustered-table table-asv100.qza 
+  --o-clustered-sequences rep-seqs-asv100.qza
+  
   #### Total-frequency-based filtering (total abundance < 10)
   
   qiime feature-table filter-features \
-  --i-table table.qza \
+  --i-table table-asv100.qza \
   --p-min-frequency 10 \
-  --o-filtered-table abu10-filtered-table.qza
+  --o-filtered-table filtered-table-abu10-asv100.qza
 
   #### Contingency-based filtering (total samples < 2)
   qiime feature-table filter-features \
-  --i-table abu10-filtered-table.qza \
+  --i-table filtered-table-abu10-asv100.qza \
   --p-min-samples 2 \
-  --o-filtered-table minsam2-abu10-filtered-table.qza
+  --o-filtered-table filtered-table-abu10-asv100-minsam2.qza
 
   #### Visualize
    qiime feature-table summarize \
-  --i-table minsam2-abu10-filtered-table.qza \
-  --o-visualization minsam2-abu10-filtered-table.qzv \
+  --i-table filtered-table-abu10-asv100-minsam2.qza \
+  --o-visualization filtered-table-abu10-asv100-minsam2.qzv \
   --m-sample-metadata-file sample-metadata.tsv
 
   ### Output as ASV table (filtered table)
  qiime tools export 
-  --input-path table.qza 
+  --input-path filtered-table-abu10-asv100-minsam2.qza 
   --output-path exported-feature-table
   
  biom convert -i exported-feature-table/feature-table.biom 
-  -o exported-feature-table/feature-table.txt --to-tsv
+  -o exported-feature-table/feature-table.tsv --to-tsv
 
   ## Filtering sequences
   #### Download sequences.fasta from rep-seqs.qzv
@@ -102,5 +113,5 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   
   conda activate seqmagick
 
-  seqmagick convert sequences.fasta filt-sequences.fasta --include-from-file list_filt_rep_seq 
+  seqmagick convert sequences.fasta filtered-abu10-asv100-minsam2-rep-sequences.fasta --include-from-file list_filt_rep_seq 
   
