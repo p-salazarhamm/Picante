@@ -68,7 +68,7 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
 
   ## Filtering feature table
   
-  #### Remove redundant ASV with 100% percent identity
+  ### Remove redundant ASV with 100% percent identity
   ##### Some rep-seqs with 100% similarity have different length and will all exist in asv-table and rep-seq
   
   qiime vsearch cluster-features-de-novo \
@@ -78,27 +78,27 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   --o-clustered-table table-asv100.qza 
   --o-clustered-sequences rep-seqs-asv100.qza
   
-  #### Total-frequency-based filtering (total abundance < 10)
+  ### Total-frequency-based filtering (total abundance < 10)
   
   qiime feature-table filter-features \
   --i-table table-asv100.qza \
   --p-min-frequency 10 \
   --o-filtered-table filtered-table-abu10-asv100.qza
 
-  #### Contingency-based filtering (total samples < 2)
+  ### Contingency-based filtering (total samples < 2)
   qiime feature-table filter-features \
   --i-table filtered-table-abu10-asv100.qza \
   --p-min-samples 2 \
   --o-filtered-table filtered-table-abu10-asv100-minsam2.qza
 
-  #### Visualize
-   qiime feature-table summarize \
+  ### Visualize
+  qiime feature-table summarize \
   --i-table filtered-table-abu10-asv100-minsam2.qza \
   --o-visualization filtered-table-abu10-asv100-minsam2.qzv \
   --m-sample-metadata-file sample-metadata.tsv
 
   ### Output as ASV table (filtered table)
- qiime tools export 
+  qiime tools export 
   --input-path filtered-table-abu10-asv100-minsam2.qza 
   --output-path exported-feature-table
   
