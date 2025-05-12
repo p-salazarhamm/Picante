@@ -114,4 +114,7 @@ source activate /users/psh102/repo/miniconda3/envs/qiime2-amplicon-2024.10
   conda activate seqmagick
 
   seqmagick convert sequences.fasta filtered-abu10-asv100-minsam2-rep-sequences.fasta --include-from-file list_filt_rep_seq 
+
+  ## Taxonomy Assignment 
+  #### UNITE QIIME release for eukaryotes 2025-02-19
   
