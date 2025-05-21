@@ -120,6 +120,8 @@ seqmagick convert sequences.fasta filtered-abu10-asv100-minsam2-rep-sequences.fa
   #### SHs resulting from clustering at the 1% distance (99% similarity)
   #### Pre-trained database (unite_ver10_99_all_19.02.2025-Q2-2024.10.qza) found at https://github.com/colinbrislawn/unite-train/releases/tag/v10.0-2025-02-19-qiime2-2024.10
 
+#--p-confidence: 0.7 (default)
+
 qiime feature-classifier classify-sklearn \
   --i-classifier unite_ver10_99_all_19.02.2025-Q2-2024.10.qza \
   --i-reads rep-seqs-asv100.qza \
