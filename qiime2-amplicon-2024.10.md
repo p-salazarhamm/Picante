@@ -117,24 +117,31 @@ seqmagick convert sequences.fasta filtered-abu10-asv100-minsam2-rep-sequences.fa
 
 ## Taxonomy Assignment 
   #### UNITE QIIME release for eukaryotes 2025-02-19 (DOI: 10.15156/BIO/3301242)
-  #### SHs resulting from clustering at the 3% distance (97% similarity)
+  #### SHs resulting from clustering at the 1% distance (99% similarity)
+  #### Pre-trained database (unite_ver10_99_all_19.02.2025-Q2-2024.10.qza) found at https://github.com/colinbrislawn/unite-train/releases/tag/v10.0-2025-02-19-qiime2-2024.10
 
+qiime feature-classifier classify-sklearn \
+  --i-classifier unite_ver10_99_all_19.02.2025-Q2-2024.10.qza \
+  --i-reads rep-seqs-asv100.qza \
+  --o-classification taxonomy-rep-reqs-asv100.qza \
+  --p-confidence 0.9
+______________________
 ### Make a classifier 
 qiime tools import \
   --type 'FeatureData[Sequence]' \
-  --input-path sh_refs_qiime_ver10_97_s_19.02.2025.fasta \
-  --output-path sh_refs_qiime_ver10_97_s_19.02.2025.qza	
+  --input-path sh_refs_qiime_ver10_99_19.02.2025.fasta \
+  --output-path sh_refs_qiime_ver10_99_19.02.2025.qza	
   
 qiime tools import 
   --type 'FeatureData[Taxonomy]' \
   --input-format HeaderlessTSVTaxonomyFormat \
-  --input-path sh_taxonomy_qiime_ver10_97_s_19.02.2025.txt \
-  --output-path sh_taxonomy_qiime_ver10_97_s_19.02.2025.qza
+  --input-path sh_taxonomy_qiime_ver10_99_19.02.2025.txt \
+  --output-path sh_taxonomy_qiime_ver10_99_19.02.2025.qza
 
 qiime feature-classifier fit-classifier-naive-bayes \
-  --i-reference-reads sh_refs_qiime_ver10_97_s_19.02.2025.qza \
-  --i-reference-taxonomy sh_taxonomy_qiime_ver10_97_s_19.02.2025.qza \
-  --o-classifier sh_classifier_qiime_ver10_97_s_19.02.2025.qza
+  --i-reference-reads sh_refs_qiime_ver10_99_19.02.2025.qza \
+  --i-reference-taxonomy sh_taxonomy_qiime_ver10_99_19.02.2025.qza \
+  --o-classifier sh_classifier_qiime_ver10_99_19.02.2025.qza
   
   
 
