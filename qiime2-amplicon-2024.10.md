@@ -98,12 +98,14 @@ qiime feature-table summarize \
   --m-sample-metadata-file sample-metadata.tsv
 
   ### Output as ASV table (filtered table)
-qiime tools export 
-  --input-path filtered-table-abu10-asv100-minsam2.qza 
+qiime tools export \
+  --input-path filtered-table-abu10-asv100-minsam2.qza \
   --output-path exported-feature-table
   
-biom convert -i exported-feature-table/feature-table.biom 
-  -o expored-feature-table/feature-table.tsv --to-tsv
+biom convert \
+  -i exported-feature-table/feature-table.biom \
+  -o expored-feature-table/feature-table.tsv \
+  --to-tsv
 
   ## Filtering sequences
   #### Download sequences.fasta from rep-seqs.qzv
@@ -137,18 +139,18 @@ qiime taxa barplot \
  --i-table filtered-table-abu10-asv100-minsam2.qza \
  --i-taxonomy taxonomy-rep-reqs-asv100.qza \
  --m-metadata-file sample-metadata.tsv \
- --o-visualization taxa-bar-plots.qzv \
+ --o-visualization taxa-bar-plots.qzv
 
 ### Filtering 
 qiime taxa filter-table \
  --i-table filtered-table-abu10-asv100-minsam2.qza \
- --i-taxonomy taxonomy-rep-seqs-asv100.qza 
+ --i-taxonomy taxonomy-rep-seqs-asv100.qza \
  --p-exclude mitochondria,chloroplast \
  --o-filtered-table table-no-mitochondria-no-chloroplast.qza
 
 qiime feature-table filter-seqs \
  --i-data rep-seqs.qza \
- --i-table table-no-mitochondria-no-chloroplast.qza 
+ --i-table table-no-mitochondria-no-chloroplast.qza \
  --o-filtered-data rep-seqs-no-mitochondria-no-chloroplast.qza
 ______________________
 ### Make a classifier 
