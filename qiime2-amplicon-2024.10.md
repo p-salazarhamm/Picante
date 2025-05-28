@@ -127,6 +127,29 @@ qiime feature-classifier classify-sklearn \
   --i-reads rep-seqs-asv100.qza \
   --o-classification taxonomy-rep-reqs-asv100.qza \
   --p-confidence 0.9
+
+### Visulization
+qiime metadata tabulate \
+ --m-input-file taxonomy-rep-reqs-asv100.qza \
+ --o-visualization taxonomy-rep-reqs-asv100.qzv
+
+qiime taxa barplot \
+ --i-table filtered-table-abu10-asv100-minsam2.qza \
+ --i-taxonomy taxonomy-rep-reqs-asv100.qza \
+ --m-metadata-file sample-metadata.tsv \
+ --o-visualization taxa-bar-plots.qzv \
+
+### Filtering 
+qiime taxa filter-table \
+ --i-table filtered-table-abu10-asv100-minsam2.qza \
+ --i-taxonomy taxonomy-rep-seqs-asv100.qza 
+ --p-exclude mitochondria,chloroplast \
+ --o-filtered-table table-no-mitochondria-no-chloroplast.qza
+
+qiime feature-table filter-seqs \
+ --i-data rep-seqs.qza \
+ --i-table table-no-mitochondria-no-chloroplast.qza 
+ --o-filtered-data rep-seqs-no-mitochondria-no-chloroplast.qza
 ______________________
 ### Make a classifier 
 qiime tools import \
@@ -144,8 +167,4 @@ qiime feature-classifier fit-classifier-naive-bayes \
   --i-reference-reads sh_refs_qiime_ver10_99_19.02.2025.qza \
   --i-reference-taxonomy sh_taxonomy_qiime_ver10_99_19.02.2025.qza \
   --o-classifier sh_classifier_qiime_ver10_99_19.02.2025.qza
-  
-  
-
-  
   
