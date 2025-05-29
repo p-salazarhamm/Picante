@@ -110,6 +110,7 @@ biom convert \
   ## Filtering sequences
   #### Download sequences.fasta from rep-seqs.qzv
   #### Use seqmagick to filter sequences (https://seqmagick.readthedocs.io/en/latest/)
+  #### Filter-seqs is an alternative to seqmagick (see below)
   
 cat filtered-feature-table/feature-table.tsv | cut -f 1 > list_filt_rep_seq
   
@@ -139,19 +140,52 @@ qiime taxa barplot \
  --i-table filtered-table-abu10-asv100-minsam2.qza \
  --i-taxonomy taxonomy-rep-reqs-asv100.qza \
  --m-metadata-file sample-metadata.tsv \
- --o-visualization filtered-taxa-abu10-asv100-minsam2-bar-plots.qzv
+ --o-visualization filtered-abu10-asv100-minsam2-rep-sequences-bar-plots.qzv
 
 ### Filtering 
 qiime taxa filter-table \
  --i-table filtered-table-abu10-asv100-minsam2.qza \
  --i-taxonomy taxonomy-rep-seqs-asv100.qza \
- --p-exclude mitochondria,chloroplast \
- --o-filtered-table table-no-mitochondria-no-chloroplast.qza
+ --p-inlcude k__Fungi \
+ --o-filtered-table filtered-table-abu10-asv100-minsam2-Fungi.qza
+
+#### View barplot as above to confirm only Fungi were retained (see above visualization)
+#### Filter-seqs is an alternative to seqmagick if you want to use qiime artifacts
 
 qiime feature-table filter-seqs \
- --i-data rep-seqs.qza \
- --i-table table-no-mitochondria-no-chloroplast.qza \
- --o-filtered-data rep-seqs-no-mitochondria-no-chloroplast.qza
+ --i-data rep-seqs-asv100.qza \
+ --i-table filtered-table-abu10-asv100-minsam2-Fungi.qza \
+ --o-filtered-data rep-seqs-asv100-abu10-minsam2-Fungi.qza
+
+ ## Phylogenetic tree
+ qiime phylogeny align-to-tree-mafft-fasttree \
+ --i-sequences rep-seqs-asv100-abu10-minsam2-Fungi.qza \
+ --o-alignment aligned-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
+ --o-masked-alignment masked-aligned-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
+ --o-tree unrooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
+ --o-rooted-tree rooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza
+ 
+ ## Diversity analyses
+ #### Based on table.qzv, make sampling depth as high as possible (so you retain more sequences per sample) while excluding as few samples as possible
+ qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
+  --i-table filtered-table-abu10-asv100-minsam2-Fungi.qza \
+  --p-sampling-depth 1381 \
+  --m-metadata-file sample-metadata.tsv \
+  --output-dir core-metrics-results
+
+  ### Alpha diversity ## HERE
+
+  qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+ 
 ______________________
 ### Make a classifier 
 qiime tools import \
