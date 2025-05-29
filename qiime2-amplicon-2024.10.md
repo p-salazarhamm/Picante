@@ -139,7 +139,7 @@ qiime taxa barplot \
  --i-table filtered-table-abu10-asv100-minsam2.qza \
  --i-taxonomy taxonomy-rep-reqs-asv100.qza \
  --m-metadata-file sample-metadata.tsv \
- --o-visualization taxa-bar-plots.qzv
+ --o-visualization filtered-taxa-abu10-asv100-minsam2-bar-plots.qzv
 
 ### Filtering 
 qiime taxa filter-table \
