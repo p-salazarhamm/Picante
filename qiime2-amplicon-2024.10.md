@@ -175,7 +175,7 @@ qiime tools export \
   --input-path ctaxonomy-rep-reqs-asv100.qza \
   --output-path taxonomy-rep-reqs-asv100
  
-## Visualizations
+## Visualizations in QIIME2
  
 ### Phylogenetic tree
  qiime phylogeny align-to-tree-mafft-fasttree \
