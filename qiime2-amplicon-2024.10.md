@@ -157,7 +157,27 @@ qiime feature-table filter-seqs \
  --i-table filtered-table-abu10-asv100-minsam2-Fungi.qza \
  --o-filtered-data rep-seqs-asv100-abu10-minsam2-Fungi.qza
 
- ## Phylogenetic tree
+## Export files for R
+
+### Export OTU table
+qiime tools export \
+  --input-path filtered-table-abu10-asv100-minsam2-Fungi.qza \
+  --output-path filtered-table-abu10-asv100-minsam2-Fungi
+
+### Convert OTU table biom to tsv
+biom convert \
+  -i filtered-table-abu10-asv100-minsam2-Fungi/feature-table.biom \
+  -o filtered-table-abu10-asv100-minsam2-Fungi.tsv \
+  --to-tsv
+
+### Export filtered taxonomy
+qiime tools export \
+  --input-path ctaxonomy-rep-reqs-asv100.qza \
+  --output-path taxonomy-rep-reqs-asv100
+ 
+## Visualizations
+ 
+### Phylogenetic tree
  qiime phylogeny align-to-tree-mafft-fasttree \
  --i-sequences rep-seqs-asv100-abu10-minsam2-Fungi.qza \
  --o-alignment aligned-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
@@ -165,7 +185,7 @@ qiime feature-table filter-seqs \
  --o-tree unrooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
  --o-rooted-tree rooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza
  
- ## Diversity analyses
+### Diversity analyses
  #### Based on table.qzv, make sampling depth as high as possible (so you retain more sequences per sample) while excluding as few samples as possible
  qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree-rep-seqs-asv100-abu10-minsam2-Fungi.qza \
