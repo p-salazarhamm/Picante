@@ -172,8 +172,8 @@ biom convert \
 
 ### Export filtered taxonomy
 qiime tools export \
-  --input-path ctaxonomy-rep-reqs-asv100.qza \
-  --output-path taxonomy-rep-reqs-asv100
+  --input-path taxonomy-rep-seqs-asv100.qza \
+  --output-path taxonomy-rep-seqs-asv100
  
 ## Visualizations in QIIME2
  
